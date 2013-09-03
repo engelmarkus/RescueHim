@@ -1,6 +1,7 @@
 #include "Rect.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 namespace RescueHim {
 	namespace Geom {
@@ -27,6 +28,12 @@ namespace RescueHim {
 		}
 
 		Rect Rect::fromLTRB(int l, int t, int r, int b) {
+			if (r < l) {
+				throw std::invalid_argument("r");
+			} else if (b < t) {
+				throw std::invalid_argument("b");
+			}
+
 			return Rect(l, t, r - l, b - t);
 		}
 
