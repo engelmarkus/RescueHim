@@ -1,9 +1,11 @@
 #pragma once
 
-#include <iostream>
+#include <ostream>
 
 namespace RescueHim {
 	namespace Geom {
+		class Size;
+
 		class Point final {
 			public:
 				Point();
@@ -11,6 +13,8 @@ namespace RescueHim {
 				Point(const Point& p);
 				Point& operator=(const Point& p);
 				~Point() = default;
+
+				explicit Point(const Size& s);
 
 				void operator+=(const Point& p);
 				void operator-=(const Point& p);

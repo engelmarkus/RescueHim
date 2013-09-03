@@ -1,5 +1,7 @@
 #include "Point.h"
 
+#include "Size.h"
+
 namespace RescueHim {
 	namespace Geom {
 		Point::Point()
@@ -22,6 +24,11 @@ namespace RescueHim {
 			this->y = p.y;
 
 			return *this;
+		}
+
+		Point::Point(const Size& s)
+			: x(s.width), y(s.height)
+		{
 		}
 
 		void Point::operator+=(const Point& p) {

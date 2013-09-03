@@ -4,7 +4,8 @@ LDFLAGS += $(shell pkg-config --libs sdl SDL_image lua5.1 luabind)
 
 OBJECTS = \
 	main.o \
-	Point.o
+	Point.o \
+	Size.o
 
 all: rescuehim
 
