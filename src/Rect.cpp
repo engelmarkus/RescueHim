@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <SDL.h>
 
 namespace RescueHim {
 	namespace Geom {
@@ -20,11 +21,20 @@ namespace RescueHim {
 		{
 		}
 
+		Rect::Rect(const SDL_Rect& r)
+			: location(r.x, r.y), size(r.w, r.h)
+		{
+		}
+
 		Rect& Rect::operator=(const Rect& r) {
 			this->location = r.location;
 			this->size = r.size;
 
 			return *this;
+		}
+
+		Rect::operator SDL_Rect() const {
+			return { location.x, location.y, (int)size.width, (int)size.height };
 		}
 
 		Rect Rect::fromLTRB(int l, int t, int r, int b) {

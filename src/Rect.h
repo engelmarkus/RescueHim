@@ -3,6 +3,8 @@
 #include "Point.h"
 #include "Size.h"
 
+struct SDL_Rect;
+
 namespace RescueHim {
 	namespace Geom {
 		/// Represents a rectangle in 2d space.
@@ -25,8 +27,15 @@ namespace RescueHim {
 				Rect(int x, int y, unsigned int w, unsigned int h);
 
 				Rect(const Rect& r);
+
+				/// @brief Creates a new Rect instance from an existing SDL_Rect.
+				Rect(const SDL_Rect& r);
+
 				Rect& operator=(const Rect& r);
 				~Rect() = default;
+
+				/// @brief Converts a Rect object into an SDL_Rect.
+				operator SDL_Rect() const;
 
 				/**
 				  * @brief Creates a Rect out of the locations of the four borders.
