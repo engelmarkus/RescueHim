@@ -1,26 +1,21 @@
 #include <iostream>
 
-#include "Point.h"
+#include <SDL.h>
+#include "Logger.h"
+#include "Sdl.h"
+#include "SdlError.h"
 
 using namespace RescueHim;
-using namespace RescueHim::Geom;
+using namespace RescueHim::Sdl;
 
 int main(int argc, char* argv[]) {
-	Point a;
-	Point b(1, 2);
-	Point c(3, 4);
-
-	Point d = a - b + c;
-
-	std::cout << "d = " << d << '\n';
-
-	if (d == Point(-2, 2)) {
-		std::cout << "d ist ";
-	} else {
-		std::cout << "d ist nicht ";
-	}
-
-	std::cout << Point(-2, 2) << std::endl;
+    try {
+        SDL::instance().initialize(SDL_INIT_VIDEO);
+    } catch (const SdlError& error) {
+        std::cerr << "Error while initializing SDL: " << error.what() << std::endl;
+        AppLog<Severity::Error>::log("Error while initializing SDL: ", error.what());
+        return 1;
+    }
 
 	return 0;
 }
