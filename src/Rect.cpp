@@ -5,132 +5,126 @@
 #include <SDL.h>
 
 namespace RescueHim {
-	namespace Geom {
-		Rect::Rect(const Point& l, const Size& s) 
-			: location(l), size(s)
-		{
-		}
+    namespace Geom {
+        Rect::Rect(const Point& l, const Size& s) 
+            : location{l}, size{s}
+        {
+        }
 
-		Rect::Rect(int x, int y, unsigned int w, unsigned int h)
-			: location(x, y), size(w, h)
-		{
-		}
+        Rect::Rect(int x, int y, unsigned int w, unsigned int h)
+            : location{x, y}, size{w, h}
+        {
+        }
 
-		Rect::Rect(const Rect& r) 
-			: location(r.location), size(r.size)
-		{
-		}
+        Rect::Rect(const SDL_Rect& r)
+            : location{r.x, r.y}, size{static_cast<unsigned int>(r.w), static_cast<unsigned int>(r.h)}
+        {
+        }
 
-		Rect::Rect(const SDL_Rect& r)
-			: location(r.x, r.y), size(r.w, r.h)
-		{
-		}
+        Rect::operator SDL_Rect() const {
+            return SDL_Rect {
+                location.x, location.y,
+                static_cast<int>(size.width), static_cast<int>(size.height)
+            };
+        }
 
-		Rect& Rect::operator=(const Rect& r) {
-			this->location = r.location;
-			this->size = r.size;
+        Rect Rect::fromLTRB(int l, int t, int r, int b) {
+            if (r < l) {
+                throw std::invalid_argument{"right < left"};
+            } else if (b < t) {
+                throw std::invalid_argument{"bottom < top"};
+            }
 
-			return *this;
-		}
+            return Rect {
+                l, t,
+                static_cast<unsigned int>(r - l), static_cast<unsigned int>(b - t)
+            };
+        }
 
-		Rect::operator SDL_Rect() const {
-			return { location.x, location.y, (int)size.width, (int)size.height };
-		}
+        int Rect::getX() const {
+            return location.x;
+        }
 
-		Rect Rect::fromLTRB(int l, int t, int r, int b) {
-			if (r < l) {
-				throw std::invalid_argument("r");
-			} else if (b < t) {
-				throw std::invalid_argument("b");
-			}
+        int Rect::getY() const {
+            return location.y;
+        }
 
-			return Rect(l, t, r - l, b - t);
-		}
+        unsigned int Rect::getWidth() const {
+            return size.width;
+        }
 
-		int Rect::getX() const {
-			return location.x;
-		}
+        unsigned int Rect::getHeight() const {
+            return size.height;
+        }
 
-		int Rect::getY() const {
-			return location.y;
-		}
+        const Point& Rect::getLocation() const {
+            return location;
+        }
 
-		int Rect::getWidth() const {
-			return size.width;
-		}
+        const Size& Rect::getSize() const {
+            return size;
+        }
 
-		int Rect::getHeight() const {
-			return size.height;
-		}
+        int Rect::getLeft() const {
+            return location.x;
+        }
 
-		const Point& Rect::getLocation() const {
-			return location;
-		}
+        int Rect::getTop() const {
+            return location.y;
+        }
 
-		const Size& Rect::getSize() const {
-			return size;
-		}
+        int Rect::getBottom() const {
+            return location.y + size.height;
+        }
 
-		int Rect::getLeft() const {
-			return location.x;
-		}
+        int Rect::getRight() const {
+            return location.x + size.width;
+        }
 
-		int Rect::getTop() const {
-			return location.y;
-		}
+        void Rect::offsetBy(const Point& p) {
+            location += p;
+        }
 
-		int Rect::getBottom() const {
-			return location.y + size.height;
-		}
+        bool Rect::contains(const Point& p) const {
+            return (p.x >= getLeft() && p.x <= getRight()) && (p.y >= getTop() && p.y <= getBottom());
+        }
 
-		int Rect::getRight() const {
-			return location.x + size.width;
-		}
+        bool Rect::contains(const Rect& r) const {
+            return (this->contains(r.location) && this->contains(r.location + static_cast<Point>(r.size)));
+        }
 
-		void Rect::offsetBy(const Point& p) {
-			location += p;
-		}
+        bool Rect::intersectsWith(const Rect& r) const {
+            if (this->getRight() < r.getLeft() || r.getRight() < this->getLeft()) {
+                return false;
+            }
 
-		bool Rect::contains(const Point& p) const {
-			return (p.x >= getLeft() && p.x <= getRight()) && (p.y >= getTop() && p.y <= getBottom());
-		}
+            if (this->getBottom() < r.getTop() || r.getBottom() < this->getTop()) {
+                return false;
+            }
 
-		bool Rect::contains(const Rect& r) const {
-			return (this->contains(r.location) && this->contains(r.location + (Point)r.size));
-		}
+            return true;
+        }
 
-		bool Rect::intersectsWith(const Rect& r) const {
-			if (this->getRight() < r.getLeft() || r.getRight() < this->getLeft()) {
-				return false;
-			}
+        Rect Rect::intersectWith(const Rect& r) const {
+            if (!this->intersectsWith(r)) {
+                return Rect { 0, 0, 0, 0 };
+            }
 
-			if (this->getBottom() < r.getTop() || r.getBottom() < this->getTop()) {
-				return false;
-			}
+            return Rect::fromLTRB(
+                std::max(this->getLeft(), r.getLeft()), 
+                std::max(this->getTop(), r.getTop()), 
+                std::min(this->getRight(), r.getRight()), 
+                std::min(this->getBottom(), r.getBottom())
+            );
+        }
 
-			return true;
-		}
+        bool operator==(const Rect& r1, const Rect& r2) {
+            return (r1.location == r2.location) && (r1.size == r2.size);
+        }
 
-		Rect Rect::intersectWith(const Rect& r) const {
-			if (!this->intersectsWith(r)) {
-				return Rect(0, 0, 0, 0);
-			}
-
-			return Rect::fromLTRB(
-				std::max(this->getLeft(), r.getLeft()), 
-				std::max(this->getTop(), r.getTop()), 
-				std::min(this->getRight(), r.getRight()), 
-				std::min(this->getBottom(), r.getBottom())
-			);
-		}
-
-		bool operator==(const Rect& r1, const Rect& r2) {
-			return (r1.location == r2.location) && (r1.size == r2.size);
-		}
-
-		bool operator!=(const Rect& r1, const Rect& r2) {
-			return !(r1 == r2);
-		}
-	}
+        bool operator!=(const Rect& r1, const Rect& r2) {
+            return !(r1 == r2);
+        }
+    }
 }
 

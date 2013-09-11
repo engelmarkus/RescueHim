@@ -13,6 +13,6 @@
  * @see std::chrono::duration
  */
 constexpr std::chrono::milliseconds operator "" _ms(unsigned long long c) {
-	return std::chrono::milliseconds(c);
+    return std::chrono::milliseconds{c};
 }
 

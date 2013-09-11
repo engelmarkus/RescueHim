@@ -1,5 +1,5 @@
-CC = g++
-CXXFLAGS += -g3 -std=c++11 -Wall -Wextra -pedantic $(shell pkg-config --cflags sdl2 SDL2_image lua5.1 luabind)
+CXX = g++-4.8
+CXXFLAGS += -g3 -O0 -std=c++11 -Weffc++ -Wall -Wextra -pedantic $(shell pkg-config --cflags sdl2 SDL2_image lua5.1 luabind)
 LDFLAGS += $(shell pkg-config --libs sdl2 SDL2_image lua5.1 luabind)
 
 OBJECTS = \
@@ -11,10 +11,10 @@ OBJECTS = \
 all: rescuehim
 
 rescuehim: $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY: clean
 clean:
