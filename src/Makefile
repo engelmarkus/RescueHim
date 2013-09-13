@@ -7,7 +7,8 @@ OBJECTS = \
 	Point.o \
 	Size.o \
 	Rect.o \
-	Sdl.o
+	Sdl.o \
+	Surface.o
 
 all: rescuehim
 

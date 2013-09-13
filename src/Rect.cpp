@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <stdexcept>
-#include <SDL.h>
+#include <SDL_rect.h>
 
 namespace RescueHim {
     namespace Geom {
