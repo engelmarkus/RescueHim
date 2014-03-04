@@ -8,21 +8,21 @@ namespace RescueHim {
 
         class Size final {
             public:
-                Size();
-                Size(unsigned int w, unsigned int h);
+                Size() noexcept;
+                Size(unsigned int w, unsigned int h) noexcept;
 
-                Size(const Size&) = default;
-                Size& operator=(const Size&) = default;
+                Size(const Size&) noexcept = default;
+                Size& operator=(const Size&) noexcept = default;
 
                 Size(Size&&) noexcept = default;
-                Size& operator=(Size&&) = default;
+                Size& operator=(Size&&) noexcept = default;
 
-                ~Size() = default;
+                ~Size() noexcept = default;
 
-                explicit Size(const Point& p);
+                explicit Size(const Point& p) noexcept;
 
-                void operator+=(const Size& s);
-                void operator-=(const Size& s);
+                Size& operator+=(const Size& s);
+                Size& operator-=(const Size& s);
 
                 unsigned int width;
                 unsigned int height;
@@ -31,8 +31,8 @@ namespace RescueHim {
         bool operator==(const Size& s1, const Size& s2);
         bool operator!=(const Size& s1, const Size& s2);
 
-        Size operator+(const Size& s1, const Size& s2);
-        Size operator-(const Size& s1, const Size& s2);
+        Size operator+(Size s1, const Size& s2);
+        Size operator-(Size s1, const Size& s2);
 
         std::ostream& operator<<(std::ostream& os, const Size& s);
     }

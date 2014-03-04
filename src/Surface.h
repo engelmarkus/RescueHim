@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 #include <SDL_surface.h>
 
 namespace RescueHim {
@@ -14,6 +15,8 @@ namespace RescueHim {
           */
         class Surface final {
             public:
+                typedef std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)> surface_ptr;
+                
                 /**
                   * @brief Creates a new empty Surface with the given size.
                   */
@@ -22,21 +25,31 @@ namespace RescueHim {
                 /**
                   * @brief Creates a new Surface by taking ownership of the given SDL_Surface.
                   */
-                Surface(SDL_Surface*&& s);
+                //Surface(SDL_Surface*&& s);
+                Surface(surface_ptr surface);
 
-                Surface(const Surface& s);
-                Surface& operator=(const Surface& s);
-
-                Surface(Surface&&) noexcept = default;
-                Surface& operator=(Surface&&) = default;
+                Surface(const Surface& other);
+                Surface(Surface&& other) noexcept;
+                
+                Surface& operator=(Surface other);
 
                 ~Surface() = default;
+                
+                static std::unique_ptr<Surface> fromBmp(const std::string& filename);
+                
+                //SDL_Surface& getSurface();
+                //const SDL_Surface& getSurface() const;
+                
+                unsigned int getWidth() const;
+                unsigned int getHeight() const;
+                
+                Geom::Size getSize() const;
 
-                SDL_Surface& getSurface();
-                const SDL_Surface& getSurface() const;
-
+                friend void swap(Surface& a, Surface& b) noexcept;
+                
             private:
-                std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)> surface;
+                //std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)> surface;
+                surface_ptr surface;
         };
     }
 }

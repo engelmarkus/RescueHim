@@ -15,7 +15,7 @@ namespace RescueHim {
                   * @param l The location of the top-left corner.
                   * @param s The size of the new Rect.
                   */
-                Rect(const Point& l, const Size& s);
+                Rect(Point l, Size s) noexcept;
 
                 /**
                   * @brief Creates a new Rect instance.
@@ -24,18 +24,18 @@ namespace RescueHim {
                   * @param w The width.
                   * @param h The height.
                   */
-                Rect(int x, int y, unsigned int w, unsigned int h);
+                Rect(int x, int y, unsigned int w, unsigned int h) noexcept;
 
                 /// @brief Creates a new Rect instance from an existing SDL_Rect.
-                Rect(const SDL_Rect& r);
+                Rect(const SDL_Rect& r) noexcept;
 
-                Rect(const Rect&) = default;
-                Rect& operator=(const Rect&) = default;
+                Rect(const Rect&) noexcept = default;
+                Rect& operator=(const Rect&) noexcept = default;
 
                 Rect(Rect&&) noexcept = default;
-                Rect& operator=(Rect&&) = default;
+                Rect& operator=(Rect&&) noexcept = default;
 
-                ~Rect() = default;
+                ~Rect() noexcept = default;
 
                 /// @brief Converts a Rect object into an SDL_Rect.
                 operator SDL_Rect() const;
@@ -65,10 +65,10 @@ namespace RescueHim {
                 unsigned int getHeight() const;
 
                 /// @returns The location of the top-left corner.
-                const Point& getLocation() const;
+                Point getLocation() const;
 
                 /// @returns The size.
-                const Size& getSize() const;
+                Size getSize() const;
 
                 /// @returns The y-coordinate of the upper border.
                 int getTop() const;

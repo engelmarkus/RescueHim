@@ -3,20 +3,22 @@
 #include <algorithm>
 #include <stdexcept>
 #include <SDL_rect.h>
+#include "Point.h"
+#include "Size.h"
 
 namespace RescueHim {
     namespace Geom {
-        Rect::Rect(const Point& l, const Size& s) 
+        Rect::Rect(Point l, Size s) noexcept
             : location{l}, size{s}
         {
         }
 
-        Rect::Rect(int x, int y, unsigned int w, unsigned int h)
+        Rect::Rect(int x, int y, unsigned int w, unsigned int h) noexcept
             : location{x, y}, size{w, h}
         {
         }
 
-        Rect::Rect(const SDL_Rect& r)
+        Rect::Rect(const SDL_Rect& r) noexcept
             : location{r.x, r.y}, size{static_cast<unsigned int>(r.w), static_cast<unsigned int>(r.h)}
         {
         }
@@ -57,11 +59,11 @@ namespace RescueHim {
             return size.height;
         }
 
-        const Point& Rect::getLocation() const {
+        Point Rect::getLocation() const {
             return location;
         }
 
-        const Size& Rect::getSize() const {
+        Size Rect::getSize() const {
             return size;
         }
 

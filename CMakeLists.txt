@@ -3,7 +3,11 @@ set(CMAKE_BUILD_TYPE_INIT "Debug")
 
 project(RescueHim)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -std=c++11 -Weffc++ -Wall -Wextra -pedantic")
+# g++
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -std=c++11 -Weffc++ -Wall -Wextra -pedantic")
+
+# clang++
+set(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -std=c++11 -Wall -Wno-c++98-compat -Wno-system-headers -pedantic -fsanitize=address,undefined,alignment,bool,bounds,enum,null,return,unreachable,vptr")
 
 
 add_subdirectory(src)

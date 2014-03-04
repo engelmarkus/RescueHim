@@ -10,22 +10,22 @@ namespace RescueHim {
         class Point final {
             public:
                 /// Creates a new Point instance with default coordinates @f$(0; 0)@f$.
-                Point();
+                Point() noexcept;
 
                 /**
                   * @brief Creates a new Point instance.
                   * @param x The x-coordinate of the new Point.
                   * @param y The y-coordinate of the new Point.
                   */
-                Point(int x, int y);
+                Point(int x, int y) noexcept;
 
-                Point(const Point&) = default;
-                Point& operator=(const Point&) = default;
+                Point(const Point&) noexcept = default;
+                Point& operator=(const Point&) noexcept = default;
 
                 Point(Point&&) noexcept = default;
-                Point& operator=(Point&&) = default;
+                Point& operator=(Point&&) noexcept = default;
                 
-                ~Point() = default;
+                ~Point() noexcept = default;
 
                 /**
                   * @brief Creates a new Point instance out of a Size object.
@@ -36,10 +36,10 @@ namespace RescueHim {
                   *
                   * @param s The Size object to be converted to a Point.
                   */
-                explicit Point(const Size& s);
+                explicit Point(const Size& s) noexcept;
 
-                void operator+=(const Point& p);
-                void operator-=(const Point& p);
+                Point& operator+=(const Point& p);
+                Point& operator-=(const Point& p);
 
                 /// The x-coordinate of the Point.
                 int x;
@@ -51,8 +51,8 @@ namespace RescueHim {
         bool operator==(const Point& p1, const Point& p2);
         bool operator!=(const Point& p1, const Point& p2);
 
-        Point operator+(const Point& p1, const Point& p2);
-        Point operator-(const Point& p1, const Point& p2);
+        Point operator+(Point p1, const Point& p2);
+        Point operator-(Point p1, const Point& p2);
 
         std::ostream& operator<<(std::ostream& os, const Point& p);
     }
