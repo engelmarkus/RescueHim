@@ -15,4 +15,3 @@
 constexpr std::chrono::milliseconds operator "" _ms(unsigned long long c) {
     return std::chrono::milliseconds{c};
 }
-

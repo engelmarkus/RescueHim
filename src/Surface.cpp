@@ -1,11 +1,12 @@
 #include "Surface.h"
 
 #include <utility>
+
 #include <SDL_error.h>
 #include <SDL_surface.h>
+
 #include "SdlError.h"
 #include "Size.h"
-#include "MakeUnique.h"
 
 namespace RescueHim {
     namespace Sdl {
@@ -23,17 +24,6 @@ namespace RescueHim {
             : surface{std::move(surface)}
         {
         }
-        
-        /*Surface::Surface(SDL_Surface*&& s)
-            : surface{nullptr, SDL_FreeSurface}
-        {
-            if (s == nullptr) {
-                throw std::invalid_argument{"Trying to move from nullptr."};
-            }
-
-            this->surface.reset(s);
-            s = nullptr;
-        }*/
         
         Surface::Surface(const Surface& other)
             : surface{nullptr, SDL_FreeSurface}
@@ -56,24 +46,6 @@ namespace RescueHim {
             return *this;
         }
         
-        std::unique_ptr<Surface> Surface::fromBmp(const std::string& filename) {
-            auto surface = Surface::surface_ptr{SDL_LoadBMP(filename.c_str()), SDL_FreeSurface};
-            
-            if (surface == nullptr) {
-                throw SdlError{SDL_GetError()};
-            }
-            
-            return std::make_unique<Surface>(std::move(surface));
-        }
-
-        /*SDL_Surface& Surface::getSurface() {
-            return *this->surface;
-        }
-
-        const SDL_Surface& Surface::getSurface() const {
-            return *this->surface;
-        }*/
-        
         unsigned int Surface::getWidth() const {
             return this->surface->w;
         }
@@ -86,10 +58,29 @@ namespace RescueHim {
             return Geom::Size { this->getWidth(), this->getHeight() };
         }
         
+        SDL_Surface* Surface::getSdlSurface() const {
+            return this->surface.get();
+        }
+        
+        bool Surface::mustLock() const {
+            return SDL_MUSTLOCK(this->surface.get());
+        }
+        
+        void Surface::lock() {
+            auto result = SDL_LockSurface(this->surface.get());
+            
+            if (result != 0) {
+                throw SdlError{SDL_GetError()};
+            }
+        }
+        
+        void Surface::unlock() {
+            SDL_UnlockSurface(this->surface.get());
+        }
+        
         
         void swap(Surface& a, Surface& b) noexcept {
             std::swap(a.surface, b.surface);
         }
     }
 }
-

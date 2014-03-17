@@ -2,11 +2,14 @@
 
 #include <memory>
 #include <string>
-#include <SDL.h>
-#include <sigc++/sigc++.h>
+
+#include <SDL_events.h>
+#include <SDL_stdinc.h>
+#include <SDL_video.h>
+
 #include "Point.h"
-#include "Size.h"
 #include "Renderer.h"
+#include "Size.h"
 
 namespace RescueHim {
     namespace Sdl {
@@ -36,6 +39,13 @@ namespace RescueHim {
                 Geom::Point getPosition() const;
                 void setPosition(const Geom::Point& position);
                 
+                void hide();
+                void maximize();
+                void minimize();
+                void raise();
+                void restore();
+                void show();
+                
                 virtual void onShown();
                 virtual void onHidden();
                 virtual void onExposed();
@@ -54,6 +64,8 @@ namespace RescueHim {
                 virtual void onLostFocus();
                 
                 virtual bool onClose();
+
+                virtual void onRender();
                 
                 virtual void processEvents(SDL_Event e);
                 

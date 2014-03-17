@@ -135,4 +135,3 @@ namespace RescueHim {
         bool operator!=(const Rect& r1, const Rect& r2);
     }
 }
-

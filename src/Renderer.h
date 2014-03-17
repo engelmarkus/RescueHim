@@ -1,7 +1,8 @@
 #pragma once
 
 #include <memory>
-#include <SDL.h>
+
+#include <SDL_render.h>
 
 namespace RescueHim {
     namespace Geom {
@@ -10,9 +11,9 @@ namespace RescueHim {
     }
     
     namespace Sdl {
-        class Window;
         class Texture;
-        
+        class Window;
+                
         class Renderer final {
             public:
                 typedef std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> renderer_ptr;
@@ -31,8 +32,16 @@ namespace RescueHim {
                 void clear();
                 void present();
                 
+                void setDrawColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+                
+                void copy(const Texture& texture, const Geom::Rect& src, const Geom::Rect& dest);
+                
+                void drawLine(const Geom::Point& p1, const Geom::Point& p2);
+                
+                SDL_Renderer* getSdlRenderer() const;
+                
                 friend class Window;
-                friend void swap(Renderer& a, Renderer& b);
+                friend void swap(Renderer& a, Renderer& b) noexcept;
                 
             private:
                 renderer_ptr renderer;

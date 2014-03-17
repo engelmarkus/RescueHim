@@ -8,6 +8,8 @@ set(rescuehim_SRC
     Window.cpp
     Renderer.cpp
     Texture.cpp
+    AnimatedTexture.cpp
+    Image.cpp
 )
 
 add_executable(rescuehim ${rescuehim_SRC})

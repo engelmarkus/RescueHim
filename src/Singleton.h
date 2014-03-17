@@ -18,4 +18,3 @@ struct Singleton {
         return inst;
     }
 };
-

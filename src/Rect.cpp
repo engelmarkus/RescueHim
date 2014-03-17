@@ -2,7 +2,9 @@
 
 #include <algorithm>
 #include <stdexcept>
+
 #include <SDL_rect.h>
+
 #include "Point.h"
 #include "Size.h"
 
@@ -129,4 +131,3 @@ namespace RescueHim {
         }
     }
 }
-

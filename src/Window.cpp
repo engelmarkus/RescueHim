@@ -1,7 +1,12 @@
 #include "Window.h"
 
-#include "SdlError.h"
+#include <SDL_error.h>
+
 #include "MakeUnique.h"
+#include "Point.h"
+#include "Renderer.h"
+#include "SdlError.h"
+#include "Size.h"
 
 namespace RescueHim {
     namespace Sdl {
@@ -66,6 +71,31 @@ namespace RescueHim {
             SDL_SetWindowPosition(this->window.get(), position.x, position.y);
         }
         
+        void Window::hide() {
+            SDL_HideWindow(this->window.get());
+        }
+        
+        void Window::maximize() {
+            SDL_MaximizeWindow(this->window.get());
+        }
+        
+        void Window::minimize() {
+            SDL_MinimizeWindow(this->window.get());
+        }
+        
+        void Window::raise() {
+            SDL_RaiseWindow(this->window.get());
+        }
+        
+        void Window::restore() {
+            SDL_RestoreWindow(this->window.get());
+        }
+        
+        void Window::show() {
+            SDL_ShowWindow(this->window.get());
+        }
+        
+        
         void Window::onShown() {
         }
         
@@ -104,6 +134,9 @@ namespace RescueHim {
         
         bool Window::onClose() {
             return true;
+        }
+        
+        void Window::onRender() {
         }
         
         void Window::processEvents(SDL_Event e) {
@@ -177,30 +210,3 @@ namespace RescueHim {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

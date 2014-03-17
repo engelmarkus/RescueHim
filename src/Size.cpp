@@ -1,6 +1,7 @@
 #include "Size.h"
 
 #include <ostream>
+
 #include "Point.h"
 
 namespace RescueHim {
@@ -62,4 +63,3 @@ namespace RescueHim {
         }
     }
 }
-

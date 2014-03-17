@@ -2,6 +2,7 @@
 
 #include <string>
 #include <utility>
+
 #include <SDL.h>
 
 namespace RescueHim {
@@ -36,4 +37,3 @@ namespace RescueHim {
     template<Severity S>
     using AppLog = Logger<Category::Application, S>;
 }
-

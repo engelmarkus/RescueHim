@@ -1,15 +1,19 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include <type_traits>
-#include <SDL.h>
-#include <sigc++/sigc++.h>
+#include <utility>
+
+#include <SDL_stdinc.h>
+#include <sigc++/signal.h>
+
 #include "Singleton.h"
-#include "MakeUnique.h"
-#include "Window.h"
 
 namespace RescueHim {
     namespace Sdl {
+        class Window;
+        
         class Sdl {
             public:
                 Sdl();
@@ -55,4 +59,3 @@ namespace RescueHim {
 
     using SDL = Singleton<Sdl::Sdl>;
 }
-

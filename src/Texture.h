@@ -1,7 +1,9 @@
 #pragma once
 
 #include <memory>
-#include <SDL.h>
+
+#include <SDL_render.h>
+
 #include "Size.h"
 
 namespace RescueHim {
@@ -28,11 +30,17 @@ namespace RescueHim {
                 
                 virtual ~Texture() = default;
                 
+                virtual Geom::Size getSize() const;
+                
+                virtual void draw(const Renderer& renderer, Geom::Point dest);
+                
+                SDL_Texture* getSdlTexture() const;
+                
             protected:
                 texture_ptr texture;
                 Geom::Size size;
                 
-                const Renderer& renderer;
+                //const Renderer& renderer;
         };
     }
 }

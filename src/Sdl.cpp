@@ -1,10 +1,13 @@
 #include "Sdl.h"
 
 #include <chrono>
+#include <ratio>
 #include <thread>
+
 #include <SDL.h>
+
 #include "SdlError.h"
-#include "ChronoLiterals.h"
+#include "Window.h"
 
 namespace RescueHim {
     namespace Sdl {
@@ -52,6 +55,13 @@ namespace RescueHim {
                         // wir genau zugreifen.
                         this->windows.at(event.window.windowID)->processEvents(event);
                         break;
+                        
+                    case SDL_USEREVENT:
+                        for (auto& wnd : this->windows) {
+                            wnd.second->onRender();
+                        }
+                        break;
+                        
                     case SDL_QUIT:
                         quit = this->onQuitRequested();
                         this->signal_quitRequested.emit();
@@ -62,23 +72,45 @@ namespace RescueHim {
         
         void Sdl::run() {
             using namespace std::chrono;
+            using clock = high_resolution_clock;
             
-            auto time_per_frame = 50_ms;
+            const int FPS = 60;
+            duration<int, std::ratio<1, FPS>> renderInterval{1};
+           
+            auto updateInterval = renderInterval / 4.0;
+            
+            int renderCounter = 0;
+
+            SDL_UserEvent u{};
+            u.type = SDL_USEREVENT;
+            
+            SDL_Event e{};
+            e.type = SDL_USEREVENT;
+            
+            e.user = u;
+            
+            auto start_time = clock::now();
             
             while (!quit) {
-                auto start_time = steady_clock::now();
+                // Queue rendering if renderInterval has passed
+                if (renderCounter % 4 == 0) {
+                    SDL_PushEvent(&e);
+                }
+                
+                renderCounter++;
                 
                 this->processEvents();
                 
-                // Draw-Thread?
+                auto elapsed_time = clock::now() - start_time;
                 
-                auto elapsed_time = steady_clock::now() - start_time;
-                
-                if (elapsed_time < time_per_frame) {
-                    std::this_thread::sleep_for(time_per_frame - elapsed_time);
+                if (elapsed_time < updateInterval) {
+                    std::this_thread::sleep_for(updateInterval - elapsed_time);
                 }
+
+                // wahrscheinlich zu lang geschlafen
+                // start_time zurücksetzen auf die Zeit, die hätte vergehen dürfen.
+                start_time += duration_cast<clock::duration>(updateInterval);
             }
         }
     }
 }
-

@@ -37,4 +37,3 @@ namespace RescueHim {
         std::ostream& operator<<(std::ostream& os, const Size& s);
     }
 }
-
