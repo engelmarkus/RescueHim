@@ -1,8 +1,9 @@
 #pragma once
 
+#include <algorithm>
 #include <memory>
 
-#include <sigc++/sigc++.h>
+#include <sigc++/connection.h>
 
 #include "MakeUnique.h"
 #include "State.h"

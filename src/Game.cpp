@@ -1,12 +1,17 @@
 #include "Game.h"
 
+#include <cstdlib>
+
+#include <SDL.h>
 #include <SDL_image.h>
+#include <sigc++/sigc++.h>
 
 #include "Sdl.h"
 #include "SdlError.h"
 #include "Logger.h"
 #include "Image.h"
 #include "MainWindow.h"
+#include "MakeUnique.h"
 #include "Intro.h"
 
 namespace RescueHim {

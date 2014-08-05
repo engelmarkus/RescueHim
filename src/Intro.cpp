@@ -1,9 +1,14 @@
 #include "Intro.h"
 
+#include <SDL_render.h>
+
 #include "Logger.h"
 #include "Image.h"
 #include "Point.h"
 #include "Game.h"
+#include "Renderer.h"
+#include "State.h"
+#include "Texture.h"
 #include "MainWindow.h"
 #include "MainMenu.h"
 

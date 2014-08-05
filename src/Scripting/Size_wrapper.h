@@ -1,6 +1,6 @@
 #pragma once
 
-#include <luabind/luabind.hpp>
+#include <luabind/scope.hpp>
 
 namespace RescueHim {
     namespace Lua {

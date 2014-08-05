@@ -1,5 +1,8 @@
 #include "Size_wrapper.h"
 
+#include <utility>
+
+#include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
 #include "../Size.h"
 

@@ -1,5 +1,8 @@
 #include "MainWindow.h"
 
+#include "Point.h"
+#include "Size.h"
+
 namespace RescueHim {
     using namespace Geom;
     using namespace Sdl;

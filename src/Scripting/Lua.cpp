@@ -2,12 +2,15 @@
 
 #include <iostream>
 #include <memory>
-#include <luabind/operator.hpp>
+
+#include <lauxlib.h>
+#include <lualib.h>
+#include <luabind/luabind.hpp>
 #include <luabind/adopt_policy.hpp>
+
 #include "../Point.h"
 #include "../Size.h"
 #include "../Level.h"
-
 #include "Level_wrapper.h"
 #include "Point_wrapper.h"
 #include "Size_wrapper.h"
@@ -75,9 +78,9 @@ namespace RescueHim {
                 level->onStart();
                 
                 // über die enemies-table iterieren
-                /*for (auto i : level->Enemies) {
+                for (auto i : level->Enemies) {
                     std::cout << object_cast<Geom::Point>(i) << std::endl;
-                }*/
+                }
 
                 
                                 

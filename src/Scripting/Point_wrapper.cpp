@@ -1,5 +1,7 @@
 #include "Point_wrapper.h"
 
+#include <utility>
+
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
 #include "../Point.h"

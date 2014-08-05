@@ -1,13 +1,10 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
-//extern "C" {
-    #include <lua.h>
-    #include <lualib.h>
-//}
-
-#include <luabind/luabind.hpp>
+#include <lua.h>
+#include <luabind/object.hpp>
 
 namespace RescueHim {
     namespace Lua {

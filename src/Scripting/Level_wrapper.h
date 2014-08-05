@@ -1,6 +1,7 @@
 #pragma once
 
-#include <luabind/luabind.hpp>
+#include <luabind/scope.hpp>
+#include <luabind/wrapper_base.hpp>
 #include "../Level.h"
 
 namespace RescueHim {

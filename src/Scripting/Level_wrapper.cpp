@@ -1,6 +1,11 @@
 #include "Level_wrapper.h"
 
-#include "Lua.h"
+#include <string>
+#include <utility>
+#include <luabind/luabind.hpp>
+
+#include "../Level.h"
+#include "../Size.h"
 
 namespace RescueHim {
     namespace Lua {
