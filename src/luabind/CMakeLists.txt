@@ -23,5 +23,3 @@ include_directories(SYSTEM luabind-0.9.1+dfsg)
 
 add_library(luabind ${luabind_SRC})
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
-target_link_libraries(luabind lua)
-

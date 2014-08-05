@@ -37,9 +37,10 @@ set(lua_SRC
 
 file(COPY lua5.2-deb-multiarch.h DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/lua5.2-5.2.3/src)
 
-set_source_files_properties(${lua_SRC} PROPERTIES LANGUAGE CXX )
+set_source_files_properties(${lua_SRC} PROPERTIES LANGUAGE CXX)
 
 add_definitions(-DLUA_USE_LINUX -DLUA_COMPAT_ALL)
+
 add_library(lua ${lua_SRC})
 target_link_libraries(lua ${CMAKE_DL_LIBS})
 
