@@ -130,8 +130,5 @@ namespace RescueHim {
                 friend bool operator==(const Rect& r1, const Rect& r2);
                 friend bool operator!=(const Rect& r1, const Rect& r2);
         };
-
-        bool operator==(const Rect& r1, const Rect& r2);
-        bool operator!=(const Rect& r1, const Rect& r2);
     }
 }

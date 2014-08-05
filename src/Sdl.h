@@ -37,6 +37,9 @@ namespace RescueHim {
                 
                 sigc::signal<void>& quitRequested();
                 
+                sigc::signal<void>& updateSignal();
+                sigc::signal<void>& renderSignal();
+                
                 void processEvents();
                 
                 void run();
@@ -52,6 +55,9 @@ namespace RescueHim {
                 std::map<Uint32, std::shared_ptr<Window>> windows;
                 
                 sigc::signal<void> signal_quitRequested;
+                
+                sigc::signal<void> signal_update;
+                sigc::signal<void> signal_render;
                 
                 bool quit;
         };

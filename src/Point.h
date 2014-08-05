@@ -55,5 +55,10 @@ namespace RescueHim {
         Point operator-(Point p1, const Point& p2);
 
         std::ostream& operator<<(std::ostream& os, const Point& p);
+        
+        /**
+         * @brief Returns the Euclidean distance between two given Points.
+         */
+        double length(const Point& p1, const Point& p2);
     }
 }

@@ -139,6 +139,10 @@ namespace RescueHim {
         void Window::onRender() {
         }
         
+        Renderer& Window::getRenderer() {
+            return *renderer.get();
+        }
+        
         void Window::processEvents(SDL_Event e) {
             switch (e.window.event) {
                 case SDL_WINDOWEVENT_SHOWN:

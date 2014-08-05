@@ -25,7 +25,8 @@ namespace RescueHim {
             
             virtual Geom::Size getSize() const override;
             
-            virtual void draw(const Renderer& renderer, Geom::Point dest) override;
+            //virtual void draw(const Renderer& renderer, Geom::Point dest) override;
+            virtual void draw(Geom::Point dest) override;
             
         private:
             Geom::Size frameSize;

@@ -25,7 +25,8 @@ namespace RescueHim {
             return frameSize;
         }
         
-        void AnimatedTexture::draw(const Renderer& renderer, Geom::Point dest) {
+        //void AnimatedTexture::draw(const Renderer& renderer, Geom::Point dest) {
+        void AnimatedTexture::draw(Geom::Point dest) {
             auto time_since_last_update = clock::now() - lastTime;
             
             if (time_since_last_update >= frameDuration) {

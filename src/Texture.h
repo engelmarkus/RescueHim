@@ -20,6 +20,13 @@ namespace RescueHim {
                 typedef std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)> texture_ptr;
                 
                 Texture() = delete;
+                
+                /**
+                 * @brief Creates a new Texture from a Surface.
+                 * @param renderer The Renderer the Texture should be assigned to.
+                 * @param surface The Surface the Texture should be created from.
+                 * @remarks The Surface is not needed anymore after successful creation.
+                 */
                 Texture(const Renderer& renderer, const Surface& surface);
                 
                 Texture(const Texture&) = delete;
@@ -30,9 +37,17 @@ namespace RescueHim {
                 
                 virtual ~Texture() = default;
                 
+                /**
+                 * @brief Returns the Size of the Texture.
+                 */
                 virtual Geom::Size getSize() const;
                 
-                virtual void draw(const Renderer& renderer, Geom::Point dest);
+                /**
+                 * @brief Draws the Texture at the specified position using the Renderer
+                 * that has been passed at construction.
+                 * @param dest The upper left corner of the rectangle where the Texture should be drawn.
+                 */
+                virtual void draw(Geom::Point dest);
                 
                 SDL_Texture* getSdlTexture() const;
                 
@@ -40,7 +55,7 @@ namespace RescueHim {
                 texture_ptr texture;
                 Geom::Size size;
                 
-                //const Renderer& renderer;
+                const Renderer& renderer;
         };
     }
 }

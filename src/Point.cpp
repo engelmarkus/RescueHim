@@ -1,5 +1,6 @@
 #include "Point.h"
 
+#include <cmath>
 #include <ostream>
 
 #include "Size.h"
@@ -60,6 +61,12 @@ namespace RescueHim {
             os << "(" << p.x << "; " << p.y << ")";
 
             return os;
+        }
+        
+        double length(const Point& p1, const Point& p2) {
+            auto diff = p2 - p1;
+            
+            return std::sqrt(diff.x * diff.x + diff.y * diff.y);
         }
     }
 }

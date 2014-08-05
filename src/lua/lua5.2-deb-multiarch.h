@@ -1,0 +1,1 @@
+#define DEB_HOST_MULTIARCH

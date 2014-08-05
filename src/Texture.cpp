@@ -14,7 +14,7 @@ namespace RescueHim {
         Texture::Texture(const Renderer& renderer, const Surface& surface)
             : texture{nullptr, SDL_DestroyTexture}
             , size{surface.getSize()}
-            //, renderer{renderer}
+            , renderer(renderer)
         {
             texture.reset(SDL_CreateTextureFromSurface(renderer.getSdlRenderer(), surface.getSdlSurface()));
             
@@ -27,7 +27,7 @@ namespace RescueHim {
             return this->size;
         }
         
-        void Texture::draw(const Renderer& renderer, Geom::Point dest) {
+        void Texture::draw(Geom::Point dest) {
             const_cast<Renderer&>(renderer).copy(*this, {{0, 0}, size}, {dest, size});
         }
         

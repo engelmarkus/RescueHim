@@ -35,6 +35,14 @@ namespace RescueHim {
             return signal_quitRequested;
         }
         
+        sigc::signal<void>& Sdl::updateSignal() {
+            return signal_update;
+        }
+        
+        sigc::signal<void>& Sdl::renderSignal() {
+            return signal_render;
+        }
+        
         void Sdl::processEvents() {
             SDL_Event event;
         
@@ -95,11 +103,13 @@ namespace RescueHim {
                 // Queue rendering if renderInterval has passed
                 if (renderCounter % 4 == 0) {
                     SDL_PushEvent(&e);
+                    signal_render.emit();
                 }
                 
                 renderCounter++;
                 
                 this->processEvents();
+                signal_update.emit();
                 
                 auto elapsed_time = clock::now() - start_time;
                 

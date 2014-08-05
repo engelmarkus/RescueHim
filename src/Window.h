@@ -68,7 +68,8 @@ namespace RescueHim {
                 virtual void onRender();
                 
                 virtual void processEvents(SDL_Event e);
-                
+
+                Renderer& getRenderer();
 
                 friend class Renderer;                
                 friend void swap(Window& a, Window& b) noexcept;
