@@ -29,7 +29,29 @@ function DasLevel:OnStart()
     print "OnStart!"
     print (self.Name)
     
-    print (Point.length(Point(1,2), Point(2,3)))
+    r1 = Rect(Point(), Size(5, 5))
+    r2 = Rect(1, 1, 4, 4)
+    
+    print (r1:containsRect(r2))
+    
+    print ("L: " .. r1.Left .. "; T: " .. r1.Top .. "; R: " .. r1.Right .. "; B: " .. r1.Bottom)
+    
+    r1:offsetBy(Point(1, 2))
+    
+    print ("L: " .. r1.Left .. "; T: " .. r1.Top .. "; R: " .. r1.Right .. "; B: " .. r1.Bottom)
+    
+    print (r1:intersectsWith(r2))
+    
+    r1:offsetBy(Point(4, 3))
+    
+    print (r1:intersectsWith(r2))
+    
+    -- sofort terminate, weil in c++11 destruktoren standardmäßig noexcept sind.
+    -- => im luabind-code diese destruktoren explizit mit noexcept(false) kennzeichnen.
+    --r1.Top = 4
+    
+    print (r1 == Rect(5, 5, 5, 5))
+    
 end
 
 --function Level.OnStep(x, y)

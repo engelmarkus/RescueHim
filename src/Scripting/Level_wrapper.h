@@ -13,6 +13,7 @@ namespace RescueHim {
 
             static void default_onStart(Level* ptr);
 
+            /// @brief Returns a luabind class definition of Level.
             static luabind::scope getClassDefinition();
         };
     }

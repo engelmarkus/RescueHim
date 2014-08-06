@@ -14,16 +14,8 @@
 #include "Level_wrapper.h"
 #include "Point_wrapper.h"
 #include "Size_wrapper.h"
-
-namespace std {
-luabind::iterator begin(luabind::adl::object& table) {
-    return luabind::iterator(table);
-}
-
-luabind::iterator end(luabind::object&) {
-    return luabind::iterator{};
-}
-}
+#include "Rect_wrapper.h"
+#include "TableIterator.h"
 
 namespace RescueHim {
     namespace Lua {
@@ -42,6 +34,7 @@ namespace RescueHim {
             module(state.get()) [
                 Point_wrapper::getClassDefinition(),
                 Size_wrapper::getClassDefinition(),
+                Rect_wrapper::getClassDefinition(),
                 Level_wrapper::getClassDefinition()
             ];
 
@@ -61,11 +54,11 @@ namespace RescueHim {
                 bool errors = luaL_loadfile(state.get(), "../data/scripts/level.lua");
                 
                 if (errors) {
-                    throw luabind::error{state.get()};
+                    throw error{state.get()};
                 }
                 
-                luabind::object script(luabind::from_stack(state.get(), -1));
-                luabind::call_function<void>(script);
+                object script(from_stack(state.get(), -1));
+                call_function<void>(script);
                 
                 lua_pop(state.get(), 1);
 
@@ -82,10 +75,12 @@ namespace RescueHim {
                     std::cout << object_cast<Geom::Point>(i) << std::endl;
                 }
 
+            } catch(const error& error) {
+                object message{from_stack(error.state(), -1)};
                 
-                                
-            } catch(const luabind::error& error) {
-                std::cout << lua_tostring(error.state(), -1) << std::endl;
+                std::cout << object_cast<std::string>(message) << std::endl;
+                
+                lua_pop(state.get(), 1);
             }
         }
 
