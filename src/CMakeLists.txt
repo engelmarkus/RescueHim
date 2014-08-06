@@ -23,7 +23,7 @@ add_subdirectory(Scripting)
 add_subdirectory(lua)
 add_subdirectory(luabind)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Weffc++ -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weffc++ -Wall -Wextra -pedantic")
 
 add_executable(rescuehim ${rescuehim_SRC})
 
