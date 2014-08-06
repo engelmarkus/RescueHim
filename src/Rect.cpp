@@ -98,11 +98,11 @@ namespace RescueHim {
         }
 
         bool Rect::intersectsWith(const Rect& r) const {
-            if (this->getRight() < r.getLeft() || r.getRight() < this->getLeft()) {
+            if (this->getRight() <= r.getLeft() || r.getRight() <= this->getLeft()) {
                 return false;
             }
 
-            if (this->getBottom() < r.getTop() || r.getBottom() < this->getTop()) {
+            if (this->getBottom() <= r.getTop() || r.getBottom() <= this->getTop()) {
                 return false;
             }
 
