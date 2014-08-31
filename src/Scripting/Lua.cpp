@@ -11,6 +11,7 @@
 #include "../Point.h"
 #include "../Size.h"
 #include "../Level.h"
+#include "../Player.h"
 #include "Level_wrapper.h"
 #include "Point_wrapper.h"
 #include "Size_wrapper.h"

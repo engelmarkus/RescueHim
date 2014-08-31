@@ -33,7 +33,7 @@ function DasLevel:OnStart()
     r1 = Rect(Point(), Size(5, 5))
     r2 = Rect(1, 1, 4, 4)
     
-    print("Player position = " .. PlayerOne);
+    print("Player position = (" .. self.PlayerOne.position.x .. "; " .. self.PlayerOne.position.y ..")");
     
     print (r1:containsRect(r2))
     

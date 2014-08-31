@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include<iosfwd>
 #include "Point.h"
 
@@ -25,3 +28,5 @@ namespace RescueHim
     std::ostream& operator<<(std::ostream& os, const Player& p);
     
 }
+
+#endif
