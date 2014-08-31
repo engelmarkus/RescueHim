@@ -16,6 +16,7 @@
 #include "Size_wrapper.h"
 #include "Rect_wrapper.h"
 #include "TableIterator.h"
+#include "Player_wrapper.h"
 
 namespace RescueHim {
     namespace Lua {
@@ -35,7 +36,8 @@ namespace RescueHim {
                 Point_wrapper::getClassDefinition(),
                 Size_wrapper::getClassDefinition(),
                 Rect_wrapper::getClassDefinition(),
-                Level_wrapper::getClassDefinition()
+                Level_wrapper::getClassDefinition(),
+                Player_wrapper::getClassDefinition()
             ];
 
             // Load some convenience functions for later use.

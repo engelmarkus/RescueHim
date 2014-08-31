@@ -6,7 +6,6 @@ set(rescuehim_SRC
     Scripting/Size_wrapper.cpp
     Scripting/Rect_wrapper.cpp
     Scripting/Level_wrapper.cpp
-    Scripting/Player_wrapper.cpp
     
     PARENT_SCOPE
 )

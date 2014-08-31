@@ -6,8 +6,9 @@ function DasLevel:__init()
     Level.setProperties(self, {
         Name = "Das Level";
     
-        StartPosition = Point(1, 2);
-
+        --StartPosition = Point(1, 2);
+	PlayerOne = Player(1, 2);
+	
         Size = Size(5, 10);
 
         Map = {
@@ -31,6 +32,8 @@ function DasLevel:OnStart()
     
     r1 = Rect(Point(), Size(5, 5))
     r2 = Rect(1, 1, 4, 4)
+    
+    print("Player position = " .. PlayerOne);
     
     print (r1:containsRect(r2))
     

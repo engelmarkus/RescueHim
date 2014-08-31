@@ -17,6 +17,8 @@ set(rescuehim_SRC
     Intro.cpp
     MainMenu.cpp
     MainWindow.cpp
+    
+    Player.cpp
 )
 
 add_subdirectory(Scripting)
