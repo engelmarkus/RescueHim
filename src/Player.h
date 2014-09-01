@@ -23,6 +23,11 @@ namespace RescueHim
       Player& operator=(Player&& p) noexcept = default;
       
       Geom::Point getPosition() const;
+      
+      void moveTop();
+      void moveDown();
+      void moveLeft();
+      void moveRight();
     };
     
     std::ostream& operator<<(std::ostream& os, const Player& p);

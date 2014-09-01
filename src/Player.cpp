@@ -25,6 +25,38 @@ namespace RescueHim
       return this->position;
   }
   /**
+   * @brief Player moves one step to the top
+   * @param none
+   */
+  void Player::moveTop()
+  {
+      this->position.y++;
+  }
+  /**
+   * @brief Player moves one step down
+   * @param none
+   */
+  void Player::moveDown()
+  {
+      this->position.y--;
+  }
+  /**
+   * @brief Player moves one step to the left
+   * @param none
+   */
+  void Player::moveLeft()
+  {
+      this->position.x--;
+  }
+  /**
+   * @brief Player moves one step to the right
+   * @param none
+   */
+  void Player::moveRight()
+  {
+      this->position.x++;
+  }
+  /**
    * @brief prints the Player to ostream
    * @param os 	ostream to print Player to
    * @param p 	The Player you want to write to the ostream

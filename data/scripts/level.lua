@@ -33,8 +33,12 @@ function DasLevel:OnStart()
     r1 = Rect(Point(), Size(5, 5))
     r2 = Rect(1, 1, 4, 4)
     
-    print("Player position = (" .. self.PlayerOne.position.x .. "; " .. self.PlayerOne.position.y ..")");
-    
+    print("Player position = (" .. self.PlayerOne.position.x .. "; " .. self.PlayerOne.position.y ..")")
+    print("Player moves one step left!")
+    --Why does that work? it should be seld.PlayerOne.moveTop()!!!
+    self.PlayerOne.moveLeft(self.PlayerOne)
+    print("Player position = (" .. self.PlayerOne.position.x .. "; " .. self.PlayerOne.position.y ..")")
+   
     print (r1:containsRect(r2))
     
     print ("L: " .. r1.Left .. "; T: " .. r1.Top .. "; R: " .. r1.Right .. "; B: " .. r1.Bottom)

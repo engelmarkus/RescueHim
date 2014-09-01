@@ -20,6 +20,11 @@ namespace RescueHim
 		.def(constructor<const Player&>())
 		
 		.property("position", &Player::getPosition)
+		
+		.def("moveTop", &Player::moveTop)
+		.def("moveDown", &Player::moveDown)
+		.def("moveLeft", &Player::moveLeft)
+		.def("moveRight", &Player::moveRight)
 	);
       }
     }
