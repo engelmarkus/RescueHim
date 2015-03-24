@@ -11,3 +11,8 @@
 *.lai
 *.la
 *.a
+
+# kdevelop files
+.kdev4
+build
+*.kdev4
