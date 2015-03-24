@@ -1,6 +1,9 @@
 #pragma once
 
 #include <memory>
+
+#if __cplusplus < 201402L
+
 #include <type_traits>
 
 namespace std {
@@ -24,3 +27,5 @@ typename enable_if<extent<T>::value != 0, void>::type
 make_unique(Ts&&...) = delete;
 
 }
+
+#endif
