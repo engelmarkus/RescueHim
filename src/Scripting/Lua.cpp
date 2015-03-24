@@ -10,12 +10,17 @@
 
 #include "../Point.h"
 #include "../Size.h"
+#include "../Rect.h"
 #include "../Level.h"
 #include "Level_wrapper.h"
 #include "Point_wrapper.h"
 #include "Size_wrapper.h"
 #include "Rect_wrapper.h"
 #include "TableIterator.h"
+
+#include <luabind/detail/deduce_signature.hpp>
+#include <luabind/detail/format_signature.hpp>
+#include <luabind/make_function.hpp>
 
 namespace RescueHim {
     namespace Lua {
@@ -50,6 +55,18 @@ namespace RescueHim {
                 //if (errors) {
                 //    throw luabind::error{state.get()};
                 //}
+                
+                /*auto sig = luabind::detail::deduce_signature(&Geom::Rect::intersectWith);
+                luabind::detail::format_signature(state.get(), "funktionsname", sig);
+                
+                object message{from_stack(state.get(), -1)};
+                
+                std::cout << object_cast<std::string>(message) << std::endl;
+                
+                lua_pop(state.get(), 1);
+                */
+                
+                
                 
                 bool errors = luaL_loadfile(state.get(), "../data/scripts/level.lua");
                 

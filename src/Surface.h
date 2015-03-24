@@ -21,7 +21,7 @@ namespace RescueHim {
                   * @brief Creates a new empty Surface with the given size.
                   * @throws SdlError If the call to SDL_CreateRGBSurface did not succeed.
                   */
-                Surface(const Geom::Size& size);
+                Surface(const Geom::Size& size, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
                 /**
                   * @brief Creates a new Surface by taking ownership of the given SDL_Surface.

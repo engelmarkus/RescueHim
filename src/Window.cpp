@@ -123,6 +123,9 @@ namespace RescueHim {
         void Window::onMouseEnter() {
         }
         
+        void Window::onMouseMove(Geom::Point position) {
+        }
+        
         void Window::onMouseLeave() {
         }
         
@@ -182,6 +185,10 @@ namespace RescueHim {
 
                 case SDL_WINDOWEVENT_ENTER:
                     this->onMouseEnter();
+                    break;
+                    
+                case SDL_MOUSEMOTION:
+                    this->onMouseMove(Geom::Point{e.motion.x, e.motion.y});
                     break;
 
                 case SDL_WINDOWEVENT_LEAVE:

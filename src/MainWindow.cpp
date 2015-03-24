@@ -11,4 +11,8 @@ namespace RescueHim {
         : Window("Hauptfenster", Point{100, 100}, Size{640, 480})
     {
     }
+    
+    void MainWindow::onMouseMove(Point position) {
+        
+    }
 }

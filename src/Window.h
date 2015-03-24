@@ -58,6 +58,7 @@ namespace RescueHim {
                 virtual void onRestored();
                 
                 virtual void onMouseEnter();
+                virtual void onMouseMove(Geom::Point position);
                 virtual void onMouseLeave();
                 
                 virtual void onGainedFocus();

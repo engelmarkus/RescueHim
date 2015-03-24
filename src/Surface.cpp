@@ -8,12 +8,17 @@
 #include "SdlError.h"
 #include "Size.h"
 
+#include "Rect.h"
+
 namespace RescueHim {
     namespace Sdl {
-        Surface::Surface(const Geom::Size& size)
+        Surface::Surface(const Geom::Size& size, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
             : surface{nullptr, SDL_FreeSurface}
         {
             surface.reset(SDL_CreateRGBSurface(0, size.width, size.height, 32, 0, 0, 0, 0));
+            
+            auto re = SDL_Rect(Geom::Rect{0,0,640,480});
+            SDL_FillRect(surface.get(), &re, SDL_MapRGBA(surface.get()->format, r, g, b, a));
 
             if (surface == nullptr) {
                 throw SdlError{SDL_GetError()};
