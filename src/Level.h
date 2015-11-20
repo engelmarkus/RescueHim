@@ -4,6 +4,7 @@
 #include <string>
 #include "Size.h"
 #include "Point.h"
+#include "Player.h"
 #include "Scripting/Lua.h"
 
 namespace RescueHim {
@@ -18,7 +19,7 @@ namespace RescueHim {
             virtual void onStart() = 0;
           
             std::string Name;
-            Geom::Point StartPosition;
+            RescueHim::Player PlayerOne;
             
             Geom::Size Size;
             

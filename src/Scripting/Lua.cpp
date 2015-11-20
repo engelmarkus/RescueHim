@@ -12,11 +12,13 @@
 #include "../Size.h"
 #include "../Rect.h"
 #include "../Level.h"
+#include "../Player.h"
 #include "Level_wrapper.h"
 #include "Point_wrapper.h"
 #include "Size_wrapper.h"
 #include "Rect_wrapper.h"
 #include "TableIterator.h"
+#include "Player_wrapper.h"
 
 #include <luabind/detail/deduce_signature.hpp>
 #include <luabind/detail/format_signature.hpp>
@@ -40,7 +42,8 @@ namespace RescueHim {
                 Point_wrapper::getClassDefinition(),
                 Size_wrapper::getClassDefinition(),
                 Rect_wrapper::getClassDefinition(),
-                Level_wrapper::getClassDefinition()
+                Level_wrapper::getClassDefinition(),
+                Player_wrapper::getClassDefinition()
             ];
 
             // Load some convenience functions for later use.
