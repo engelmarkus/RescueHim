@@ -23,7 +23,9 @@ add_subdirectory(Scripting)
 add_subdirectory(lua)
 add_subdirectory(luabind)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weffc++ -Wall -Wextra -pedantic")
+set_source_files_properties(${rescuehim_SRC} PROPERTIES
+    COMPILE_FLAGS "-pedantic -Wall -Wextra -Wnon-virtual-dtor -Weffc++ -Wcast-qual -Winit-self -Wconversion -Wshadow"
+)
 
 add_executable(rescuehim ${rescuehim_SRC})
 

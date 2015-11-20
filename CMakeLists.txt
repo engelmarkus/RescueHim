@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 2.8.11)
 set(CMAKE_BUILD_TYPE_INIT "Debug")
 
+#set(CMAKE_CXX_COMPILER "/opt/gcc-5/bin/g++")
+set(CMAKE_CXX_COMPILER "/opt/llvm/bin/clang++")
+
 project(RescueHim)
 
-# g++
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g3")
-
-# clang++
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -std=c++11 -Wall -Wno-c++98-compat -Wno-system-headers -pedantic -fsanitize=address,undefined,alignment,bool,bounds,enum,null,return,unreachable,vptr")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 add_subdirectory(src)
 add_subdirectory(doc)
