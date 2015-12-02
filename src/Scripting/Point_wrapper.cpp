@@ -11,7 +11,7 @@ namespace RescueHim {
         luabind::scope Point_wrapper::getClassDefinition() {
             using namespace luabind;
             using namespace Geom;
-            
+
             return (
                 class_<Point>("Point")
                     .def(constructor<>())
@@ -24,11 +24,11 @@ namespace RescueHim {
                     .def(const_self + other<const Point&>())
                     .def(const_self - other<const Point&>())
                     .def(const_self == other<const Point&>())
-                    
+
                     .scope [
                         def("length", &length)
                     ]
-                
+
             );
         }
     }

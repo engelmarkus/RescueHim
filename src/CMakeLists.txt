@@ -37,8 +37,8 @@ pkg_check_modules(LIBS REQUIRED sdl2 SDL2_image sigc++-2.0)
 include_directories(SYSTEM ${LIBS_INCLUDE_DIRS})
 target_link_libraries(rescuehim ${LIBS_LIBRARIES})
 
-include_directories(SYSTEM lua/lua5.2-5.2.3/src)
-link_directories(SYSTEM lua/lua5.2-5.2.3/src)
+include_directories(SYSTEM lua/lua5.2-5.2.4/src)
+link_directories(SYSTEM lua/lua5.2-5.2.4/src)
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
 target_link_libraries(rescuehim lua)
 

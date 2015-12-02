@@ -18,8 +18,16 @@ set(luabind_SRC
     luabind-0.9.1+dfsg/src/wrapper_base.cpp
 )
 
-include_directories(SYSTEM ../lua/lua5.2-5.2.3/src)
+include_directories(SYSTEM ../lua/lua5.2-5.2.4/src)
 include_directories(SYSTEM luabind-0.9.1+dfsg)
 
 add_library(luabind ${luabind_SRC})
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
+
+add_custom_target(luabind_precompiled
+    COMMAND  ${CMAKE_CXX_COMPILE_OBJECT}
+    VERBATIM
+    SOURCES luabind_precompiled.h
+)
+
+add_dependencies(luabind luabind_precompiled)

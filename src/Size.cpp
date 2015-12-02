@@ -24,14 +24,14 @@ namespace RescueHim {
         Size& Size::operator+=(const Size& s) {
             this->width += s.width;
             this->height += s.height;
-            
+
             return *this;
         }
 
         Size& Size::operator-=(const Size& s) {
             this->width -= s.width;
             this->height -= s.height;
-            
+
             return *this;
         }
 
@@ -46,13 +46,13 @@ namespace RescueHim {
 
         Size operator+(Size s1, const Size& s2) {
             s1 += s2;
-            
-            return s1;            
+
+            return s1;
         }
 
         Size operator-(Size s1, const Size& s2) {
             s1 -= s2;
-            
+
             return s1;
         }
 
