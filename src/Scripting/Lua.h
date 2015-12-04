@@ -9,23 +9,23 @@
 namespace RescueHim {
     namespace Lua {
         class Lua final {
-            public:
-                typedef std::unique_ptr<lua_State, decltype(&lua_close)> state_ptr;
-                
-                Lua();
-                
-                Lua(const Lua&) = delete;
-                Lua(Lua&&) = default;
-                
-                Lua& operator=(const Lua&) = delete;
-                Lua& operator=(Lua&&) = default;
+        public:
+            using state_ptr = std::unique_ptr<lua_State, decltype(&lua_close)>;
 
-                ~Lua() = default;
-                
-                luabind::object operator[](const std::string& key);
-                
-            private:
-                state_ptr state;
+            Lua();
+
+            Lua(Lua const&) = delete;
+            Lua(Lua&&) = default;
+
+            Lua& operator=(Lua const&) = delete;
+            Lua& operator=(Lua&&) = default;
+
+            ~Lua() = default;
+
+            luabind::object operator[](std::string const& key);
+
+        private:
+            state_ptr state;
         };
     }
 }

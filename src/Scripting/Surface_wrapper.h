@@ -4,9 +4,8 @@
 
 namespace RescueHim {
     namespace Lua {
-        class Point_wrapper {
+        class Surface_wrapper {
         public:
-            /// @brief Returns a luabind class definition of Geom::Point.
             static luabind::scope getClassDefinition();
         };
     }

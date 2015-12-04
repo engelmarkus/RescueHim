@@ -2,7 +2,8 @@
 
 #include <luabind/scope.hpp>
 #include <luabind/wrapper_base.hpp>
-#include "../Level.h"
+
+#include "Level.h"
 
 namespace RescueHim {
     namespace Lua {

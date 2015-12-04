@@ -1,6 +1,6 @@
 set(rescuehim_SRC
     main.cpp
-    
+
     Point.cpp
     Rect.cpp
     Size.cpp
@@ -12,14 +12,16 @@ set(rescuehim_SRC
     Texture.cpp
     AnimatedTexture.cpp
     Image.cpp
-    
+
     Game.cpp
     Intro.cpp
     MainMenu.cpp
     MainWindow.cpp
-    
+
     Player.cpp
 )
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(Scripting)
 add_subdirectory(lua)
@@ -42,6 +44,6 @@ link_directories(SYSTEM lua/lua5.2-5.2.4/src)
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
 target_link_libraries(rescuehim lua)
 
-include_directories(SYSTEM luabind/luabind-0.9.1+dfsg)
-link_directories(SYSTEM luabind/luabind-0.9.1+dfsg/src)
+include_directories(SYSTEM luabind/luabind-deboostified)
+link_directories(SYSTEM luabind/luabind-deboostified/src)
 target_link_libraries(rescuehim luabind)

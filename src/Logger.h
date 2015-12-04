@@ -27,11 +27,11 @@ namespace RescueHim {
 
     template<Category category, Severity severity>
     class Logger {
-        public:
-            template<typename... Args>
-            static void log(const std::string& str, Args&&... args) {
-                SDL_LogMessage((int)category, (SDL_LogPriority)severity, str.c_str(), std::forward<Args>(args)...);
-            }
+    public:
+        template<typename... Args>
+        static void log(std::string const& str, Args&&... args) {
+            SDL_LogMessage((int)category, (SDL_LogPriority)severity, str.c_str(), std::forward<Args>(args)...);
+        }
     };
 
     template<Severity S>

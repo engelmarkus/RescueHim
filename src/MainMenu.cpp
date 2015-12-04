@@ -12,9 +12,10 @@ namespace RescueHim {
 
     void MainMenu::render() {
         Renderer& r = this->game.getMainWindow().getRenderer();
-        
+
         r.setDrawColor(100, 100, 100, 255);
         r.clear();
         r.present();
     }
 }
+

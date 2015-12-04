@@ -11,24 +11,27 @@
 namespace RescueHim {
     namespace Geom {
         Rect::Rect(Point l, Size s) noexcept
-            : location{l}, size{s}
+            : location{l}
+            , size{s}
         {
         }
 
         Rect::Rect(int x, int y, unsigned int w, unsigned int h) noexcept
-            : location{x, y}, size{w, h}
+            : location{x, y}
+            , size{w, h}
         {
         }
 
-        Rect::Rect(const SDL_Rect& r) noexcept
-            : location{r.x, r.y}, size{static_cast<unsigned int>(r.w), static_cast<unsigned int>(r.h)}
+        Rect::Rect(SDL_Rect const& r) noexcept
+            : location{r.x, r.y}
+            , size{static_cast<unsigned int>(r.w)
+            , static_cast<unsigned int>(r.h)}
         {
         }
 
         Rect::operator SDL_Rect() const {
             return SDL_Rect {
-                location.x, location.y,
-                static_cast<int>(size.width), static_cast<int>(size.height)
+                location.x, location.y, static_cast<int>(size.width), static_cast<int>(size.height)
             };
         }
 
@@ -40,8 +43,7 @@ namespace RescueHim {
             }
 
             return Rect {
-                l, t,
-                static_cast<unsigned int>(r - l), static_cast<unsigned int>(b - t)
+                l, t, static_cast<unsigned int>(r - l), static_cast<unsigned int>(b - t)
             };
         }
 
@@ -85,19 +87,19 @@ namespace RescueHim {
             return location.x + size.width;
         }
 
-        void Rect::offsetBy(const Point& p) {
+        void Rect::offsetBy(Point const& p) {
             location += p;
         }
 
-        bool Rect::contains(const Point& p) const {
+        bool Rect::contains(Point const& p) const {
             return (p.x >= getLeft() && p.x <= getRight()) && (p.y >= getTop() && p.y <= getBottom());
         }
 
-        bool Rect::contains(const Rect& r) const {
+        bool Rect::contains(Rect const& r) const {
             return (this->contains(r.location) && this->contains(r.location + static_cast<Point>(r.size)));
         }
 
-        bool Rect::intersectsWith(const Rect& r) const {
+        bool Rect::intersectsWith(Rect const& r) const {
             if (this->getRight() <= r.getLeft() || r.getRight() <= this->getLeft()) {
                 return false;
             }
@@ -109,24 +111,24 @@ namespace RescueHim {
             return true;
         }
 
-        Rect Rect::intersectWith(const Rect& r) const {
+        Rect Rect::intersectWith(Rect const& r) const {
             if (!this->intersectsWith(r)) {
                 return Rect { 0, 0, 0, 0 };
             }
 
             return Rect::fromLTRB(
-                std::max(this->getLeft(), r.getLeft()), 
-                std::max(this->getTop(), r.getTop()), 
-                std::min(this->getRight(), r.getRight()), 
+                std::max(this->getLeft(), r.getLeft()),
+                std::max(this->getTop(), r.getTop()),
+                std::min(this->getRight(), r.getRight()),
                 std::min(this->getBottom(), r.getBottom())
             );
         }
 
-        bool operator==(const Rect& r1, const Rect& r2) {
+        bool operator==(Rect const& r1, Rect const& r2) {
             return (r1.location == r2.location) && (r1.size == r2.size);
         }
 
-        bool operator!=(const Rect& r1, const Rect& r2) {
+        bool operator!=(Rect const& r1, Rect const& r2) {
             return !(r1 == r2);
         }
     }

@@ -4,10 +4,16 @@
 
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
-#include "../Size.h"
+
+#include "Scripting/ScopeFactory.h"
+#include "Size.h"
 
 namespace RescueHim {
     namespace Lua {
+        namespace {
+            bool registered = ScopeFactory::instance().registerObject("Size", &Size_wrapper::getClassDefinition);
+        }
+
         luabind::scope Size_wrapper::getClassDefinition() {
             using namespace luabind;
             using namespace Geom;
@@ -16,14 +22,14 @@ namespace RescueHim {
                 class_<Size>("Size")
                     .def(constructor<>())
                     .def(constructor<int, int>())
-                    .def(constructor<const Size&>())
+                    .def(constructor<Size const&>())
 
                     .def_readwrite("width", &Size::width)
                     .def_readwrite("height", &Size::height)
 
-                    .def(const_self + other<const Size&>())
-                    .def(const_self - other<const Size&>())
-                    .def(const_self == other<const Size&>())
+                    .def(const_self + other<Size const&>())
+                    .def(const_self - other<Size const&>())
+                    .def(const_self == other<Size const&>())
             );
         }
     }

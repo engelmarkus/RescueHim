@@ -1,12 +1,12 @@
 #pragma once
 
 /*namespace RescueHim {
-    namespace Gui {
-        class Control {
-        };
-    }
-}
-*/
+  namespace Gui {
+  class Control {
+  };
+  }
+  }
+  */
 
 #include <memory>
 
@@ -22,10 +22,10 @@ class Manager {
 public:
     //Manager(std::shared_ptr<RescueHim::Sdl::Window> window) : window{window} {}
     Manager() {}
-    
-    
+
+
     Control* toplevel;
-    
-    
+
+
     //std::shared_ptr<RescueHim::Sdl::Window> window;
 };

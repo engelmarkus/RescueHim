@@ -3,4 +3,5 @@
 -isystem/usr/include/sigc++-2.0
 -isystem/usr/lib/x86_64-linux-gnu/sigc++-2.0/include
 -isystem/home/markus/RescueHim/src/lua/lua5.2-5.2.4/src
--isystem/home/markus/RescueHim/src/luabind/luabind-0.9.1+dfsg
+-isystem/home/markus/RescueHim/src/luabind/luabind-deboostified
+-isystem/home/markus/RescueHim/src

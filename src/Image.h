@@ -11,12 +11,12 @@ namespace RescueHim {
         public:
             Image() = default;
             ~Image();
-            
+
             void initialize(int flags);
-            
-            Surface load(const std::string& filename) const;
+
+            Surface load(std::string const& filename) const;
         };
     }
-    
+
     using SDL_image = Singleton<Sdl::Image>;
 }

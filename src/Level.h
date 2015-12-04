@@ -9,21 +9,21 @@
 
 namespace RescueHim {
     class Level {
-        public:
-            Level() = default;
-            virtual ~Level() = default;
-            
-            Level(const Level&) = delete;
-            Level& operator=(const Level&) = delete;
+    public:
+        Level() = default;
+        virtual ~Level() = default;
 
-            virtual void onStart() = 0;
-          
-            std::string Name;
-            RescueHim::Player PlayerOne;
-            
-            Geom::Size Size;
-            
-            luabind::object Map;
-            luabind::object Enemies;
+        Level(Level const&) = delete;
+        Level& operator=(Level const&) = delete;
+
+        virtual void onStart() = 0;
+
+        std::string Name;
+        RescueHim::Player PlayerOne;
+
+        Geom::Size Size;
+
+        luabind::object Map;
+        luabind::object Enemies;
     };
 }
